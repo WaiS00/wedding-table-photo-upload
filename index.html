@@ -13,16 +13,30 @@
       body, html {
         height: 100%;
         margin: 0;
+        scroll-behavior: smooth; /* Smooth scrolling */
       }
 
-      .bg {
-        background-image: url('source/img/AI-61.JPEG');
-        background-size: cover;  
+      .section {
+        height: 100vh; /* Make each image fill the screen */
+        background-size: cover;
         background-position: center;
-        height: 100%;
         position: relative;
+        overflow: hidden;
       }
 
+      .bg1 {
+        background-image: url('source/img/AI-61.JPEG');
+      }
+
+      .bg2 {
+        background-image: url('source/img/AI-76.JPEG');
+      }
+
+      .bg3 {
+        background-image: url('source/img/AI-95.JPEG');
+      }
+
+      /* Overlay Styling */
       .overlay {
         position: absolute;
         top: 0;
@@ -32,8 +46,9 @@
         background-color: rgba(0, 0, 0, 0.5); 
       }
 
+      /* Text styling */
       .text {
-        position: absolute;
+        position: fixed;
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
@@ -41,6 +56,7 @@
         text-align: center;
         font-family: Arial, sans-serif;
         width: 80%;
+        z-index: 10; /* Ensures text is always on top */
       }
 
       .text h1 {
@@ -81,18 +97,27 @@
   </head>
 
   <body>
-    <div class="bg">
+    <!-- First Section: AI-61 background -->
+    <div class="section bg1">
       <div class="overlay"></div>
-      
       <div class="text">
         <h1>Welcome to Wai Yee and Weehong Wedding</h1>
         <p>Please help to attach/take pictures and files from the wedding</p>
-
         <!-- Button to open the modal -->
         <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#fileUploadModal">
           Upload Photos & Files
         </button>
       </div>
+    </div>
+
+    <!-- Second Section: AI-76 background -->
+    <div class="section bg2">
+      <div class="overlay"></div>
+    </div>
+
+    <!-- Third Section: AI-95 background -->
+    <div class="section bg3">
+      <div class="overlay"></div>
     </div>
 
     <!-- Modal for file upload -->
