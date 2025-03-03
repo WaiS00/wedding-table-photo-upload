@@ -55,7 +55,7 @@
         color: white;
         text-align: center;
         font-family: Arial, sans-serif;
-        width: 80%;
+        width: 90%;
         z-index: 10; /* Ensures text is always on top */
       }
 
@@ -101,7 +101,7 @@
     <div class="section bg1">
       <div class="overlay"></div>
       <div class="text">
-        <h1>Welcome to Wai Yee and Weehong Wedding</h1>
+        <h1>Welcome to <br>Wai Yee & Weehong<br> Wedding</h1>
         <p>Please help to attach/take pictures and files from the wedding</p>
         <!-- Button to open the modal -->
         <button type="button" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#fileUploadModal">
@@ -144,5 +144,49 @@
 
     <!-- Bootstrap JS and Popper.js -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <!-- Custom JavaScript for auto-scrolling on swipe -->
+    <script>
+      let currentSection = 0;
+      const sections = document.querySelectorAll('.section');
+
+      // Function to scroll to the next section
+      const scrollToSection = (index) => {
+        if (index >= 0 && index < sections.length) {
+          sections[index].scrollIntoView({ behavior: 'smooth' });
+        }
+      };
+
+      // Detect touch swipe gestures on mobile
+      let startTouchY = 0;
+      document.addEventListener('touchstart', (e) => {
+        startTouchY = e.touches[0].clientY;
+      });
+
+      document.addEventListener('touchend', (e) => {
+        const endTouchY = e.changedTouches[0].clientY;
+        if (startTouchY > endTouchY + 50) {
+          // Swipe up (scroll to the next section)
+          currentSection = Math.min(currentSection + 1, sections.length - 1);
+          scrollToSection(currentSection);
+        } else if (startTouchY < endTouchY - 50) {
+          // Swipe down (scroll to the previous section)
+          currentSection = Math.max(currentSection - 1, 0);
+          scrollToSection(currentSection);
+        }
+      });
+
+      // Detect keyboard scrolling for desktop
+      document.addEventListener('wheel', (e) => {
+        if (e.deltaY > 0) {
+          // Scroll down (next section)
+          currentSection = Math.min(currentSection + 1, sections.length - 1);
+        } else {
+          // Scroll up (previous section)
+          currentSection = Math.max(currentSection - 1, 0);
+        }
+        scrollToSection(currentSection);
+      });
+    </script>
   </body>
 </html>
